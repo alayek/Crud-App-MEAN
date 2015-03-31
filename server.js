@@ -1,5 +1,7 @@
 var express = require('express');
 var path  = require('path');
+var bodyParser = require('body-parser');
+
 // db connection
 var mongojs = require('mongojs');
 var db = mongojs(process.env.MONGODB_DEVELOPMENT_USERNAME + ':' + process.env.MONGODB_DEVELOPMENT_PASSWORD + '@' + process.env.MONGODB_DEVELOPMENT_HOST + ':' + process.env.MONGODB_DEVELOPMENT_PORT + '/' + process.env.MONGODB_DEVELOPMENT_DB, ['contactList']);
@@ -8,7 +10,9 @@ var app = express();
 
 // middleware
 app.use(express.static(path.join(__dirname + '/views')));
+app.use(bodyParser.json());
 
+// get request in the contactList route
 app.get('/contactList', function(req, res){
   db.contactList.find(function(err, data){
     if(err){
@@ -17,6 +21,17 @@ app.get('/contactList', function(req, res){
     res.json(data.map(function(item){
       return {name:item.name, email:item.email, contact:item.contact};
     }));
+  });
+});
+
+// post request in the contactList route
+app.post('/contactList', function(req, res){
+  db.contactList.insert(req.body, function(err, data){
+    if(err) {
+      console.error("Something went wrong with insertion");
+      return;
+    }
+    res.json({name:data.name, email:data.email, contact:data.contact});
   });
 });
 
