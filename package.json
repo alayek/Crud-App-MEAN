@@ -1,6 +1,6 @@
 {
-  "name": "workspace",
-  "version": "0.0.0",
+  "name": "Contact List App",
+  "version": "1.0.0",
   "description": "My first mean app",
   "main": "server.js",
   "dependencies": {
@@ -12,6 +12,6 @@
   "scripts": {
     "test": "test"
   },
-  "author": "",
+  "author": "Arijit Layek",
   "license": "ISC"
 }
