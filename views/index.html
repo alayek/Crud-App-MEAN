@@ -26,15 +26,23 @@
             <td><input class="form-control" ng-model="contact.name"></td>
             <td><input class="form-control" ng-model="contact.email"></td>
             <td><input class="form-control" ng-model="contact.contact"></td>
-            <td><button class="btn btn-success" ng-click="addContact()">Add</button></td>
-            <td><button class="btn btn-info" ng-click="updateContact()">Update</button></td>
+            <td><button class="btn btn-success" ng-click="addContact()" id="addButton">
+              <span class="glyphicon glyphicon-plus"></span>
+              </button></td>
+            <td><button class="btn btn-info" ng-click="updateContact()" id="updateButton">
+              <span class="glyphicon glyphicon-ok"></span>
+              </button></td>
           </tr>
           <tr ng-repeat="contact in contactList">
             <td>{{contact.name}}</td>
             <td>{{contact.email}}</td>
             <td>{{contact.contact}}</td>
-            <td><button class="btn btn-default" ng-click="editContact(contact.id)">Edit</button></td>
-            <td><button class="btn btn-danger" ng-click="removeContact(contact.id)">Remove</button></td>
+            <td><button class="btn btn-default" ng-click="editContact(contact.id)">
+              <span class="glyphicon glyphicon-pencil"></span>
+                </button></td>
+            <td><button class="btn btn-danger" ng-click="removeContact(contact.id)">
+              <span class="glyphicon glyphicon-trash"></span>
+                </button></td>
           </tr>
           
         </tbody>

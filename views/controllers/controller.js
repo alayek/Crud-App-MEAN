@@ -5,6 +5,7 @@ myApp.controller('AppControl', ['$scope', '$http', function($scope, $http){
   var refresh = function(){
     $http.get('/contactList').success(function(response){
       $scope.contactList = response;
+      $("#updateButton").attr('disabled', 'disabled');
     });
   }
   
@@ -30,6 +31,8 @@ myApp.controller('AppControl', ['$scope', '$http', function($scope, $http){
   }
   
   $scope.editContact = function(id){
+    // activate the update button
+    $("#updateButton").removeAttr('disabled');
     $http.get('/contactList/' + id).success(function(response){
       $scope.contact = response;
     });
