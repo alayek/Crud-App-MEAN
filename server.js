@@ -12,6 +12,13 @@ var app = express();
 app.use(express.static(path.join(__dirname + '/views')));
 app.use(bodyParser.json());
 
+//set up the data
+db.contactList.drop(function(){
+ db.contactList.insert([{'name':'Tim', 'email':'tim@example.com', 'contact':'(111)-453 1111'},
+                        {'name':'John', 'email':'john@example.net', 'contact':'(562)-111 8432'},
+                        {'name':'Michael', 'email':'michael@example.org', 'contact':'(286)-134 8543'}]); 
+})
+
 // get request in the contactList route
 app.get('/contactList', function(req, res){
   db.contactList.find(function(err, data){
